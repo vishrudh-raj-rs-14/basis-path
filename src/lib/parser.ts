@@ -8,7 +8,8 @@ export async function parseCodeToCFG(code: string): Promise<any> {
     initPromise = (async () => {
       await (Parser as any).init();
       parserInstance = new (Parser as any)();
-      const cppLang = await (Language as any).load('/tree-sitter-cpp.wasm');
+      const basePath = import.meta.env.BASE_URL || '/';
+      const cppLang = await (Language as any).load(`${basePath}tree-sitter-cpp.wasm`);
       parserInstance.setLanguage(cppLang);
     })();
   }
